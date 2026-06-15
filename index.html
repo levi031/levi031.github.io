@@ -2,90 +2,1087 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       PAGE TITLE — shown in browser tab
+       Change "Levi Mitchell" to whatever you'd like the tab to read
+       ============================================================ -->
   <title>Levi Mitchell</title>
-  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- ============================================================
+       META DESCRIPTION — shown in Google search results (~155 chars)
+       ============================================================ -->
+  <meta name="description" content="Levi Mitchell — Remote Sensing, Environmental Policy, Geospatial Intelligence, and Multilateral Affairs. MSc Candidate, University of Ottawa." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+  <style>
+    /* ============================================================
+       GLOBAL RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* ── Colour tokens ── */
+      --bg:          #0a0a0f;
+      --surface:     #0d0d16;
+      --surface-2:   #141825;
+      --border:      #1a1a28;
+      --border-2:    #1e2535;
+      --accent:      #2e5f94;
+      --accent-dim:  #1c2f48;
+
+      --text-primary:   #f0f0ea;
+      --text-secondary: #c8cdd8;
+      --text-muted:     #8899a8;
+      --text-dim:       #6a7a90;
+      --text-faint:     #445566;
+      --text-ghost:     #282830;
+
+      /* ── Typography ── */
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans:  'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       LAYOUT WRAPPER
+       ============================================================ */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 3rem;
+    }
+
+    /* ============================================================
+       MASTHEAD
+       ============================================================ */
+    .masthead {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .masthead-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    /* ── Name ──
+       Change font-size here if the name feels too large or small */
+    .name {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    /* ── Tagline below name ──
+       Edit the four discipline labels inside the <p class="tagline"> in the HTML */
+    .tagline {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 0.45rem;
+    }
+
+    /* ============================================================
+       DATE / STATUS BAR
+       ============================================================ */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      padding: 0.4rem 0;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ============================================================
+       THREE-COLUMN GRID
+       ============================================================ */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.45fr 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    /* ── Centre column inner border ── */
+    .col-center {
+      border-left:  0.5px solid var(--border);
+      border-right: 0.5px solid var(--border);
+      padding: 0 1.1rem;
+    }
+
+    /* ============================================================
+       SHARED SECTION LABEL
+       ============================================================ */
+    .label {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1.5px solid var(--accent-dim);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .rule { border: none; border-top: 0.5px solid var(--border); margin: 0.8rem 0; }
+
+    /* ============================================================
+       ASCII PORTRAIT
+       ============================================================ */
+    .ascii-wrap {
+      background: var(--surface);
+      border: 0.5px solid var(--border-2);
+      padding: 0.55rem;
+      overflow: hidden;
+      height: 180px;
+    }
+
+    .ascii-wrap pre {
+      font-family: monospace;
+      font-size: 3.2px;
+      line-height: 1.05;
+      color: #3d5570;
+      letter-spacing: 0;
+      white-space: pre;
+    }
+
+    .caption {
+      font-size: 8px;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 0.3rem;
+    }
+
+    /* ============================================================
+       STAT BLOCKS
+       ============================================================ */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      line-height: 1.35;
+      margin-top: 1px;
+    }
+
+    /* ============================================================
+       LANGUAGE DOTS
+       ============================================================ */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+
+    .lang-name {
+      font-size: 10px;
+      color: var(--text-secondary);
+      min-width: 54px;
+    }
+
+    .lang-dots { display: flex; gap: 3px; }
+
+    .dot {
+      width: 9px;
+      height: 3px;
+      border-radius: 1px;
+    }
+
+    .dot.on  { background: var(--accent); }
+    .dot.off { background: var(--surface-2); border: 0.5px solid var(--border-2); }
+
+    /* ============================================================
+       READING TRACKER
+       ============================================================ */
+    .book-title {
+      font-size: 10.5px;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 2px;
+    }
+
+    .book-author {
+      font-size: 9px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .progress-label {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 5px;
+    }
+
+    .progress-track {
+      background: var(--surface-2);
+      border: 0.5px solid var(--border-2);
+      border-radius: 2px;
+      height: 4px;
+      overflow: hidden;
+    }
+
+    /* ── Reading progress fill ──
+       Change "width" to adjust the fill. 50% = 26/52 books. ── */
+    .progress-fill {
+      width: 50%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .progress-ends {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .progress-start { font-size: 8px; color: var(--accent); }
+    .progress-end   { font-size: 8px; color: var(--text-faint); }
+
+    /* ============================================================
+       PILLS / TAGS
+       ============================================================ */
+    .pills { margin-top: 0.4rem; }
+
+    .pill {
+      display: inline-block;
+      background: var(--surface-2);
+      color: var(--text-dim);
+      font-size: 7.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin: 2px 2px 2px 0;
+      border: 0.5px solid var(--border-2);
+    }
+
+    /* ============================================================
+       CLEARANCE BLOCK
+       ============================================================ */
+    .clearance-org  { font-size: 9.5px; color: var(--text-muted); line-height: 1.5; }
+    .clearance-lvl  { color: var(--accent); }
+
+    /* ============================================================
+       CENTRE COLUMN — KICKER / HEADLINE / SUBHEAD / PULL QUOTE
+       ============================================================ */
+    .kicker {
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .headline {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .subhead {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.58;
+      margin-bottom: 0.8rem;
+    }
+
+    .pull-quote {
+      border-left: 2px solid var(--accent-dim);
+      padding-left: 0.85rem;
+      margin: 0.75rem 0;
+    }
+
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: 13.5px;
+      font-style: italic;
+      color: #a0aab8;
+      line-height: 1.48;
+    }
+
+    /* ============================================================
+       EXPERIENCE ENTRIES
+       ============================================================ */
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-role {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .exp-date {
+      font-size: 9px;
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .exp-org  { font-size: 10px; color: var(--accent); margin-bottom: 3px; }
+    .exp-desc { font-size: 10px; color: var(--text-dim); line-height: 1.5; margin-bottom: 0.65rem; }
+
+    /* ============================================================
+       RIGHT COLUMN — PROJECT CARDS
+       ============================================================ */
+    .proj-block {
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .proj-block:last-of-type { border-bottom: none; margin-bottom: 0; }
+
+    .proj-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d0d4dc;
+      line-height: 1.3;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.25rem;
+    }
+
+    .proj-desc {
+      font-size: 9.5px;
+      color: var(--text-dim);
+      line-height: 1.52;
+    }
+
+    .badge-row { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 0.4rem; }
+
+    .badge {
+      font-size: 7.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+    }
+
+    .badge-blue  { background: #0d1c2e; color: var(--accent);   border: 0.5px solid var(--accent-dim); }
+    .badge-navy  { background: #0e1320; color: #5a7a9a;         border: 0.5px solid #1a2535; }
+
+    .proj-link {
+      font-size: 8.5px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
+
+    /* ============================================================
+       MULTILATERAL ENTRIES
+       ============================================================ */
+    .multi-block { margin-bottom: 0.65rem; }
+
+    .multi-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+
+    .multi-desc {
+      font-size: 9.5px;
+      color: var(--text-dim);
+      line-height: 1.48;
+    }
+
+    /* ============================================================
+       CONTACT LINKS
+       ============================================================ */
+    .contact-list { font-size: 9.5px; color: var(--text-dim); line-height: 2; }
+
+    .contact-list a {
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+
+    .contact-list a:hover { color: var(--accent); text-decoration: none; }
+
+    .contact-list i {
+      font-size: 11px;
+      color: var(--accent);
+      margin-right: 5px;
+      vertical-align: -1px;
+    }
+
+    /* ============================================================
+       BOTTOM BAR
+       ============================================================ */
+    .bottom-bar {
+      display: flex;
+      gap: 1.4rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1.4rem;
+      padding-top: 0.9rem;
+    }
+
+    .bottom-item { flex: 1; }
+
+    .bottom-hed {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.2px;
+    }
+
+    .bottom-sub {
+      font-size: 9.5px;
+      color: var(--text-faint);
+      line-height: 1.55;
+    }
+
+    .divider-v { width: 0.5px; background: var(--border); flex-shrink: 0; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      text-align: center;
+      margin-top: 1.4rem;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      color: var(--text-ghost);
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       RESPONSIVE — collapses to single column on narrow screens
+       ============================================================ */
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .col-center { border: none; padding: 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 1rem 0; }
+      .masthead-meta { font-size: 8px; }
+      .name { letter-spacing: -1px; }
+      .status-bar { flex-direction: column; gap: 2px; align-items: flex-start; }
+      .bottom-bar { flex-direction: column; gap: 0.8rem; }
+      .divider-v { display: none; }
+    }
+  </style>
 </head>
-
 <body>
+<div class="page">
 
-  <header class="top-bar">
-    <div class="name">Levi Mitchell</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <!-- ============================================================
+       MASTHEAD
+       ============================================================ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <!-- LEFT meta — location -->
+      <span>Gatineau, QC &nbsp;·&nbsp; Canada</span>
+      <!-- CENTRE meta — leave as &nbsp; for empty space, or add a short phrase -->
+      <span>&nbsp;</span>
+      <!-- RIGHT meta — availability signal -->
+      <span>Open to Opportunities</span>
+    </div>
+
+    <!-- YOUR NAME — edit here if you ever need to adjust capitalisation -->
+    <h1 class="name">Levi Mitchell</h1>
+
+    <!-- TAGLINE — four disciplines separated by · -->
+    <p class="tagline">Remote Sensing &nbsp;·&nbsp; Environmental Policy &nbsp;·&nbsp; Geospatial Intelligence &nbsp;·&nbsp; Multilateral Affairs</p>
   </header>
 
-  <main class="container">
+  <!-- ============================================================
+       STATUS BAR
+       ============================================================ -->
+  <div class="status-bar">
+    <!-- LEFT — your domain(s) -->
+    <span>levi031.github.io &nbsp;·&nbsp; levimitchell.ca</span>
+    <!-- CENTRE — key affiliations -->
+    <span>★ &nbsp; NASA · UN · ECCC · Young Diplomats of Canada</span>
+    <!-- RIGHT — current programme -->
+    <span>MSc Candidate, uOttawa · 2026</span>
+  </div>
 
-    <section class="hero">
-      <h1>Environmental Economist & Geospatial Analyst</h1>
-      <p>
-        Working at the intersection of remote sensing, climate policy, and economic systems.
+  <!-- ============================================================
+       MAIN THREE-COLUMN GRID
+       ============================================================ -->
+  <div class="grid">
+
+    <!-- ══════════════════════════════════════════════════════════
+         LEFT COLUMN
+         ══════════════════════════════════════════════════════════ -->
+    <div class="col-left">
+
+      <!-- ── ASCII PORTRAIT ── -->
+      <p class="label">Portrait</p>
+      <div class="ascii-wrap">
+        <!-- ASCII art is pasted verbatim — do not edit unless replacing the portrait entirely -->
+        <pre>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+###############%%%%%%%%%%%%%%%%%%%@@@@@@@%%%%%xxxxxx==xx===xx===xxx=@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#################%%%%%%%%%%%%%%%%%%%@@@%%##x**=======:::::::========***x###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#################%%%%%%%%%%%%%%%@@@%%#x*===:=====::::::::::+::::==**=====***x#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%###########%%#####%%%%%%%%%%%x**============:::::::::::::::::===*========*#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%################%%%%%%%%#x*==::===========:::::::::======:::=============*xx%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%#####################%#%#x*==::======**=====::::::::====*********=========*====x##%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%############%%%%%%%%%%%##x*=:======*********===========****xxxxx####xx**========:=x#%%%%%%%%%%%%%%%%%%%%%%%%%%
+##%%####%%%%#%%%%%%%%%%%%%%%#*=:++::=*xxxxxxxxxx*************xxxxx#####%%%%%#x*======:=x#%%%%%%%%%%%%%%%%%%%%%%%%%
+#######%%%%%%%%%%%%%%%%%%%%%*=:++++:x#########xxxxxx*xxx**xxxxxxxx#####%%%%%%%#x*===::=x###%%%%%%%%%%%%%%%%%%%%%%%
+######%%%%%%%%%%%%%%%%%%%%%x=:+:++:x###%%%%###xxxxxxxxxx***xxxxxxx#####%%%%%%%%%#x*=====*x##%%%%%%%%%%%%%%%%%%%%%%
+#######%%%%%%%%%%%%%%%%%%%#=::=:::x##%%%%#####xxxxxxxx*****xxxxxxxx####%%%%%%%%%%%%#*:::==**x%%%%%%%%%%%%%%%%%%%%%
+########%%%%%%%%%%%%%%%%%%x::==:=x###%#########xxxxxxx****xxxxxxxxx#####%%%%%%%%%%%%#=====*%%%%%%%%%%%%%%%%%%%%%%%
+#######%%%%%%%%%%%%%%%%%%%*::===*##############xxxxxxx****x*xxxxxxx######%%%%%%%%%%%%x*=*=**%%%%%%%%%%%%%%%%%%%%%%
+######%%%%%%%%%%%%%%%%%%%%*:::=*x#############xxxxxxxx***xxxxxxxxxx#######%%%%%%%%%%%#***==x%%%%%%%%%%%%%%%%%%%%%%
+#####%%%%%%%%%%%%%%%%%%%%%#=::=*xx###########xxxxxxx*****xxxxxxxxxxxx####%%%%%%%%%%%%#x****%%%%%%%%%%%%%%%%%%%%%%%
+%%%###%%%%%%%%%%%%%%%%%%%%x::=**xx###########xxxxx*******xx***xxxxxxx####%%%%%%%%%%%%#x****%%%%%%%%%%%%%%%%%%%%%%%
+%%#####%%%%%%%%%%%%%%%%%%%#===**xx##########xxxxxx*****xx*****xxxxxxx####%%%%%%%%%%%%#x**=*#%%%%%%%%%%%%%%%%%%%%%%
+%%%###%%%%%%%%%%%%%%%%%%%%%x:=**x##########xxxxxxx*****xxx*****xxxxxx#######%%%%%%%%%%x*==*#%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%x:=**#########xxxxxxxxx******xx**********xx****xxxx#%%%%%%%#x*=x%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%#:==x#######x**===::::=====**********====::::::==**xx##%%%%%x*=#%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%:=*x#####x**===:::++++:::===******x****==::===***xxx##%%%%%x*=#%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%=:*x#####xx***===::++++::==*xxxx###x*=::::++:=*xxxx###%%%%#x*=%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%@x:=*#####xx*====*++++::++:*xxxxx##%#*=:::::++:x**xx##%%%%%#*=*%@@%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%x==*#####x******x:+::=:::=xxxx**x####*=:=====*xxxxx##%%%%%x*=x#%@%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%x#*=*#####xxxxxxx**=======*xxxxxx#####x*===**xx#######%%%%%x****%@%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%==x=*x#####x#xxxx********xxxxx#xx#######x*****xxx####%%%%%%x*x**#%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%*=xx=x#######xxx********xxxx#x#xx#%#%%##xxx***xxx###%%%%%%%x*%x*#%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%@x=x#*x########xxxx******xx#####xxx%##%%##xxxxxxx#####%%%%%%x*##x%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%@%*#x=x#######xxxxxx*****xxxx##x*xx#%###xxx*xxxx#####%%%%%%%x=x##%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%@##*=x#######xxxxx******=x#xxxx**x###%%x****xxx#####%%%%%%%x*###%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%@@#x**########xxxx****===x*::=***xx==*##**=*xxx#####%%%%%%%####%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%@#x#x########xxxx***==******x***x##x*xxxx***xx####%%%%%%%##%#%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@#xxx########xxx*************==*xxxxxxxxxxxxxx###%%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@##x########xxxx***************xxx*xxx*xxxx#####%%%%%%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@%x########xxxxx*****xxx******xxx####xxxx#####%%%%%%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@#x########xxxx*=****========**=***xx***x####%%%%%%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%x#########xxx=============******xxxx***###%%%%%%%##%@%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#x########xx***xxxxxx********x#######xx###%%#%%%%##%@%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%xx####xx#xx**xxxxxxx**=====**x############%%%%%##%@%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#x####xxxxxxxxxxxxx***==***xx########%%%%%%%%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%xxx#xx##xxxxxxxxxxxx****xx#######%##%%%%%%%##%@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#%##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%xxx#xx#xxx###xxxxxx****x#######%#%%%%%%%###%@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%##xxxxxxxxxxxxxxxx******x###################@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%####xxx*xx***xxxx***==***x##xxx#xxxxxx###%##@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#######xx**=******======*******xxx*x#%%%%%##@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%####%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%########xx**======::::======***xx#%%%%%%###@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%x%%##########xxx**======:====**xx##%%%%%%%%##@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#x:x&#############xxxx****==xxxx#####%%%%%%%%%##&%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%x=::@&%#############################%%%%%%%%%%##%&@=*#%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*=::x&&@xx##########################%%%%%#%#%%%#%&&&x:=x%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%x====:@&@@@x*xx#######################%%%%%##%##%@&&&&%:==x%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%##########%%%%%%%#*=====:=@@@@@&@#***xx###################%%##%####%&&&&&&@===**##%%%%%%%%%###%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%#x*======::=@@@@@@@@@%x***xx################%%%##xx%&&&&&&&&%::==***x##%%%#######%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%#*=========:::%@@@@@@@@@@%#x***#################x**#@&&&&&&&&&#::====*==*xx#########%%%%%%%%%
+%%%%%%%%%%@@%%%%#x**===========:::+#&@@@@@@@@@@@@%#x****x########xx**x#@&&&&&&&&&&&*:::=========*xxx##%%%%%%%%%%%%
+@%%%%%%%@@@%#x*=:::::::==:====::::+*&@@@@@@@@@@@@@@@%#x****xxxx*****#@&&&&&&&&&&&&@::================*x#%%@@%%%%%%
+@@@@@%%#x*==:::::=:::::=::==::::::::@@@@@@@@@@@@@@@@@@%#x*********#%&&&&&&&&&&&&&&x::=:=================*x##%%@%%%
+%#x*==:::::::::::::::=:=:::::::::::+#&@@@@@@@@@@@@@@%%@@@%#***x#%@@&&&&&&&&&&&&&&&*::::=:==============::::===*%%%
+x::::::::::+++::::::=::=:::::::::::+=&@@@@@@@@@@@@@@@@@%#xx####%@@&&&&&&&&&&&&&&&@::::===:==-============::=======
+:::::+++:+:+:+:+:::::::::::::::::::::#&@@@@@@@@@@@@@%x=::+:::++:=x%&&&&&&&&&&&&&&#:::::==:================::::====
+:+++:::+::+:::::+:::::::::::::::::::+=@&@@@@@@@@@@#*:+===::::::::::=#@&&&&&&&&&&&*::::::===::========:=====::::===
+++++++++:++:::::::::::::::::::::::::::x&@@@@@@@@#*::::==*==::+:===:::=x@&&&&&&&&%:::::::==::::::====:=======::::==
+::+:::+++++::::::::::::::::::::::::::+=%@@@@@@#*=*=====*===:::==*==*====x@&&&&&&x:::::::::==:=======::====:==::::=
+:::+::+:+++::::::+:::::::::::::::::::::*@&@@#x******=**xx**=:+:**x##x*==**#@&&&%=:::::=:===:::=====:+++:==+==:::::
+:::+:+++++++:::::++:::::::::::::::::::+*#@@#%#xxx******###==:::*x%%%%x*xxx#%#&&x:::::==:=====::::===:++:====::::::
+:::::++++++++::::+::+:::::::::::::::::+:***%@%#xxxxxx*x%@%=:::=*#%###x#xx#@@**#=:::::====:::::::::::::::===:::::::
+:::::++++++++:::::::+::::::::::::::=:::+==*%@@%xxxxxx*x%@#==:==:x#####xx#%&@*==:+::::======::::::::+++:::=::::::::
+:::+++++++++++:::::::::+:+++++:::::::::+:=*#@@%#xxxxxxx%%*=:::===###xxx##@&#**=++::::::===::::==:::::::===::::::::
+:::::+::+::++++:::::::+::+++:+:::::::::+:==x@@%#xxxxxx*x**=+++=***xxxxx#%@@x*=:++:::::::::::::::::::::===:::::::::
+:::::+++++++++++::::::::::::::++:::::::++:=*%@%%xxxxx**=:*=:+:=****xxxx#%&@**=+++:::::=:::::::::::::::==::::::::::
+::::::::++:+++++:::::+++++::::::::::::::+:=*#@%##xxx**=====::::=***xxxx#@&#*=:++:::::::=::::::::::::::=:::::::::::
+        </pre>
+      </div>
+      <!-- CAPTION below the portrait — edit name or location as needed -->
+      <p class="caption">Levi Mitchell — Gatineau, QC</p>
+
+      <hr class="rule" />
+
+      <!-- ── AT A GLANCE STATS ──
+           Edit the stat-num and stat-lbl text for each of the four blocks -->
+      <p class="label">At a glance</p>
+      <div class="stats">
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-lbl">NASA Technical Reports</div>
+        </div>
+        <div>
+          <div class="stat-num">3M+</div>
+          <div class="stat-lbl">Trees planted</div>
+        </div>
+        <div>
+          <div class="stat-num">COP28</div>
+          <div class="stat-lbl">UNFCCC Delegate</div>
+        </div>
+        <div>
+          <div class="stat-num">100+</div>
+          <div class="stat-lbl">Research collaborators (SPCB)</div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- ── LANGUAGES ──
+           Each row = one language.
+           dot on  = filled (proficient)
+           dot off = empty  (not yet)
+           Current: English 5/5, French 3/5, Spanish 2/5
+           To change a language: edit the <span class="lang-name"> text
+           To change a level: swap .on / .off on the five dots -->
+      <p class="label">Languages</p>
+
+      <div class="lang-row">
+        <span class="lang-name">English</span>
+        <div class="lang-dots">
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+        </div>
+      </div>
+
+      <div class="lang-row">
+        <span class="lang-name">French</span>
+        <div class="lang-dots">
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot off"></div>
+          <div class="dot off"></div>
+        </div>
+      </div>
+
+      <div class="lang-row">
+        <span class="lang-name">Spanish</span>
+        <div class="lang-dots">
+          <div class="dot on"></div>
+          <div class="dot on"></div>
+          <div class="dot off"></div>
+          <div class="dot off"></div>
+          <div class="dot off"></div>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- ── CURRENTLY READING ──
+           book-title   = title of the book (italicised)
+           book-author  = author or subject line
+           progress-label = short descriptor for the progress bar
+           progress-fill width = percentage (26/52 = 50%)
+           progress-start = left number shown under the bar
+           progress-end   = right number (goal) shown under the bar
+           Reading progress — when you finish a book, update the width: 50% on .progress-fill (e.g. 27/52 = 51.9%) and the 26 number beneath the bar -->
+      <p class="label">Currently reading</p>
+      <p class="book-title">Freedom Fighter: John Diefenbaker's Battle for Canadian Liberties and Independence</p>
+      <p class="book-author"> Bob Plamondon</p>
+      <p class="progress-label">26 of 52 books this year</p>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-ends">
+        <span class="progress-start">26</span>
+        <span class="progress-end">52</span>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- ── SECURITY CLEARANCE ──
+           Edit the clearance level or issuing government as needed -->
+      <p class="label">Clearance</p>
+      <p class="clearance-org">
+        Government of Canada<br />
+        <span class="clearance-lvl">Reliability Clearance</span>
       </p>
-    </section>
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>
-        Graduate researcher focused on environmental sustainability, land-use change modeling,
-        and remote sensing analysis for policy and economic applications.
+      <hr class="rule" />
+
+      <!-- ── TECHNICAL STACK ──
+           Add or remove <span class="pill"> tags to update your skills -->
+      <p class="label">Technical stack</p>
+      <div class="pills">
+        <span class="pill">Python</span>
+        <span class="pill">R</span>
+        <span class="pill">GEE</span>
+        <span class="pill">ArcPro</span>
+        <span class="pill">SQL</span>
+        <span class="pill">QGIS</span>
+        <span class="pill">Julia</span>
+        <span class="pill">LaTeX</span>
+        <span class="pill">CNN / ML</span>
+        <span class="pill">JavaScript</span>
+      </div>
+
+    </div><!-- /col-left -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         CENTRE COLUMN
+         ══════════════════════════════════════════════════════════ -->
+    <div class="col-center">
+
+      <!-- ── PROFILE NARRATIVE ──
+           kicker    = small blue label above the headline
+           headline  = main editorial headline
+           subhead   = 2–3 sentence paragraph describing who you are -->
+      <p class="label">Profile</p>
+      <p class="kicker">The story</p>
+      <h2 class="headline">Where satellite data meets policy architecture</h2>
+      <p class="subhead">
+        Levi Mitchell moves between disciplines most professionals treat as separate worlds —
+        writing Python pipelines at Environment and Climate Change Canada one day, representing
+        Canada in Bangkok as a Young Diplomat the next. His career is defined by the capacity
+        to speak the language of both the machine and the minister.
       </p>
-    </section>
 
-    <section id="work" class="section">
-      <h2>Experience</h2>
-
-      <div class="item">
-        <h3>Environment and Climate Change Canada</h3>
-        <p>Junior Economist — Economic Analysis Directorate</p>
+      <!-- PULL QUOTE — the short italic statement that anchors the narrative -->
+      <div class="pull-quote">
+        <p>"From wildfire crews in BC to UNFCCC negotiation floors, from NASA technical reports
+        to economic emissions modeling — the thread is the same: complex systems, real stakes."</p>
       </div>
 
-     <div class="item">
-        <h3>Young Diplomats of Canada</h3> 
-        <p>Delegate - World Bank Group - International Monetary Fund</p>
-     </div>
+      <hr class="rule" />
 
-      <div class="item">
-        <h3>NASA DEVELOP Program</h3>
-        <p>Earth observation research for ecological monitoring</p>
+      <!-- ── EXPERIENCE ──
+           Each block: exp-role / exp-org / exp-date / exp-desc
+           Add a new <div> block to add another role.
+           Remove a block to drop a role. -->
+      <p class="label">Experience</p>
+
+      <!-- ROLE 1 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role">Junior Economist</span>
+          <span class="exp-date">2025–Present</span>
+        </div>
+        <p class="exp-org">Environment and Climate Change Canada</p>
+        <p class="exp-desc">
+          Develops LULUCF emissions projections via CNN remote sensing and GIS; model results
+          feed Canada's UNFCCC submissions. Presented at the Energy Modeling Hub Conference,
+          Carleton University.
+        </p>
       </div>
 
-      <div class="item">
-        <h3>UN Sustainable Development Solutions Network</h3>
-        <p>Research contributor — science and sustainability analytics</p>
+      <!-- ROLE 2 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role">Delegate</span>
+          <span class="exp-date">2026–Present</span>
+        </div>
+        <p class="exp-org">Young Diplomats of Canada</p>
+        <p class="exp-desc">
+          Representing Canada at the World Bank Group &amp; IMF 2026 meeting in Bangkok;
+          championing youth interests in climate finance and economic development.
+        </p>
       </div>
-    </section>
 
-    <section id="research" class="section">
-      <h2>Research</h2>
-
-      <div class="item">
-        <h3>Land Use Change & Climate Reporting</h3>
-        <p>Geospatial modeling supporting national emissions accounting.</p>
+      <!-- ROLE 3 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role">GIS Consultant</span>
+          <span class="exp-date">2024–2025</span>
+        </div>
+        <p class="exp-org">UN Sustainable Development Solutions Network</p>
+        <p class="exp-desc">
+          Primary geospatial contributor to the Science Panel for the Congo Basin — assessment
+          report targeting UNFCCC COP30. Collaborated across 100+ researchers using ArcPro,
+          Google Earth Engine, and R.
+        </p>
       </div>
 
-      <div class="item">
-        <h3>Forest Conservation Analytics</h3>
-        <p>Remote sensing applications for biodiversity monitoring.</p>
+      <!-- ROLE 4 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role">Project Lead &amp; Remote Sensing Analyst</span>
+          <span class="exp-date">2024</span>
+        </div>
+        <p class="exp-org">NASA DEVELOP — Boston, MA</p>
+        <p class="exp-desc">
+          Led two feasibility studies using NASA Earth Observations on Caribou migration in
+          Alaska. Awarded Researcher of the Term; promoted to project lead. Presented findings
+          at NASA HQ, Washington D.C.
+        </p>
       </div>
-    </section>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Email: levimitchell31@gmail.com</p>
-      <p>GitHub: github.com/levi031</p>
-      <p>LinkedIn: linkedin.com/in/levimitchell-levi031</p>
-    </section>
+      <hr class="rule" />
 
-  </main>
+      <!-- ── EDUCATION ──
+           degree / institution / date — edit inline -->
+      <p class="label">Education</p>
 
-  <footer>
-    <p>© 2026 Levi Mitchell</p>
-  </footer>
+      <!-- DEGREE 1 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role" style="font-size:11px;">MSc Environmental Sustainability</span>
+          <span class="exp-date">Expected Aug. 2026</span>
+        </div>
+        <!-- Edit thesis title or university name below -->
+        <p class="exp-org" style="margin-bottom:0.5rem;">
+          University of Ottawa &nbsp;·&nbsp; Thesis: Forest Cover Change, Congo Basin (2015–2025)
+        </p>
+      </div>
 
+      <!-- DEGREE 2 -->
+      <div>
+        <div class="exp-header">
+          <span class="exp-role" style="font-size:11px;">BA Environmental Studies</span>
+          <span class="exp-date">May 2024</span>
+        </div>
+        <!-- Edit university, GPA, or minors below -->
+        <p class="exp-org">
+          Salve Regina University &nbsp;·&nbsp; Summa Cum Laude, 3.92 GPA &nbsp;·&nbsp; Minors: Economics, History
+        </p>
+      </div>
+
+    </div><!-- /col-center -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         RIGHT COLUMN
+         ══════════════════════════════════════════════════════════ -->
+    <div class="col-right">
+
+      <!-- ── PUBLICATIONS / PROJECTS ──
+           Each proj-block = one project card.
+           proj-title  = project name
+           proj-desc   = 1–2 sentence description
+           badge-row   = keyword tags (badge-blue or badge-navy)
+           proj-link   = citation / URL line (optional) -->
+      <p class="label">Publications</p>
+      <p class="kicker">NASA Technical Reports</p>
+
+      <!-- PROJECT 1 -->
+      <div class="proj-block">
+        <p class="proj-title">Alaska Ecological Conservation I</p>
+        <p class="proj-desc">
+          River Ice Phenology and Caribou Migration — Earth Observations applied to identify
+          seasonal shifts affecting Alaska's Caribou corridors. Langley Research Center.
+        </p>
+        <div class="badge-row">
+          <span class="badge badge-blue">NASA DEVELOP</span>
+          <span class="badge badge-navy">NPS Partner</span>
+        </div>
+        <!-- Edit or remove the link line below -->
+        <p class="proj-link">
+          <a href="https://ntrs.nasa.gov/citations/20240005384" target="_blank" rel="noopener">
+            ↗ ntrs.nasa.gov &nbsp;·&nbsp; 20240005384 &nbsp;·&nbsp; Apr 2024
+          </a>
+        </p>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="proj-block">
+        <p class="proj-title">Alaska Ecological Conservation II</p>
+        <p class="proj-desc">
+          Vegetation Phenology and Caribou Calving — follow-on study expanding phenological
+          analysis to growing season dynamics and calving ground impacts.
+        </p>
+        <div class="badge-row">
+          <span class="badge badge-blue">NASA DEVELOP</span>
+          <span class="badge badge-navy">NPS Partner</span>
+        </div>
+        <p class="proj-link">
+          <a href="https://ntrs.nasa.gov/citations/20240010736" target="_blank" rel="noopener">
+            ↗ ntrs.nasa.gov &nbsp;·&nbsp; 20240010736 &nbsp;·&nbsp; Aug 2024
+          </a>
+        </p>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="proj-block">
+        <p class="proj-title">LULUCF Emissions Modeling</p>
+        <p class="proj-desc">
+          CNN-based remote sensing improvements to Canada's Land-Use and Forestry GHG
+          projections — scheduled for release in ECCC's UNFCCC submission.
+        </p>
+        <div class="badge-row">
+          <span class="badge badge-blue">ECCC</span>
+          <span class="badge badge-navy">UNFCCC</span>
+        </div>
+        <p class="proj-link">Energy Modeling Hub Conference &nbsp;·&nbsp; Dec 2025</p>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="proj-block">
+        <p class="proj-title">Congo Basin — Science Panel</p>
+        <p class="proj-desc">
+          Geospatial analysis for the SPCB assessment report, mapping forest cover change
+          across the Congo Basin for COP30 publication.
+        </p>
+        <div class="badge-row">
+          <span class="badge badge-blue">UN SDSN</span>
+          <span class="badge badge-navy">COP30</span>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- ── MULTILATERAL ──
+           Each multi-block = one affiliation / experience.
+           multi-title = role or event name
+           multi-desc  = location, year, one-line summary -->
+      <p class="label">Multilateral</p>
+
+      <!-- MULTILATERAL 1 -->
+      <div class="multi-block">
+        <p class="multi-title">UNFCCC COP28 Delegate</p>
+        <p class="multi-desc">Dubai, UAE · 2023 · International climate negotiations and multilateral framework engagement.</p>
+      </div>
+
+      <!-- MULTILATERAL 2 -->
+      <div class="multi-block">
+        <p class="multi-title">Young Diplomats of Canada</p>
+        <p class="multi-desc">World Bank &amp; IMF 2026 · Bangkok, Thailand · Climate finance and youth development advocacy.</p>
+      </div>
+
+      <!-- MULTILATERAL 3 -->
+      <div class="multi-block">
+        <p class="multi-title">Nuala Pell Leadership Fellow</p>
+        <p class="multi-desc">Capitol Hill · McCain Institute · Embassy of Liechtenstein · Engaged with RI Senators Whitehouse &amp; Reed.</p>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- ── CONTACT ──
+           Edit email, LinkedIn username, GitHub username, and website URL below.
+           To add another link, copy one <div> block and swap the icon class and text. -->
+      <p class="label">Contact</p>
+      <div class="contact-list">
+
+        <!-- EMAIL — change the href and visible text -->
+        <div>
+          <i class="ti ti-mail" aria-hidden="true"></i>
+          <a href="mailto:levimitchell31@gmail.com">levimitchell31@gmail.com</a>
+        </div>
+
+        <!-- LINKEDIN — change /in/username in both the href and display text -->
+        <div>
+          <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+          <a href="https://linkedin.com/in/levi-mitchell-levi031" target="_blank" rel="noopener">
+            linkedin.com/in/levi-mitchell-levi031
+          </a>
+        </div>
+
+        <!-- GITHUB — change username in both href and display text -->
+        <div>
+          <i class="ti ti-brand-github" aria-hidden="true"></i>
+          <a href="https://github.com/levi031" target="_blank" rel="noopener">
+            github.com/levi031
+          </a>
+        </div>
+
+        <!-- WEBSITE — change href and display text -->
+        <div>
+          <i class="ti ti-world" aria-hidden="true"></i>
+          <a href="https://levimitchell.ca" target="_blank" rel="noopener">levimitchell.ca</a>
+        </div>
+
+      </div><!-- /contact-list -->
+
+    </div><!-- /col-right -->
+  </div><!-- /grid -->
+
+  <!-- ============================================================
+       BOTTOM BAR — three summary panels
+       Edit bottom-hed and bottom-sub text for each panel
+       ============================================================ -->
+  <div class="bottom-bar">
+
+    <div class="bottom-item">
+      <p class="bottom-hed">Public Presentations</p>
+      <p class="bottom-sub">
+        12+ talks — NASA HQ, National Park Service, Energy Modeling Hub, NEARC, SRU.
+        Topics span Earth observation, caribou ecology, COP28, and wildfire policy.
+      </p>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <div class="bottom-item">
+      <p class="bottom-hed">Field Experience</p>
+      <p class="bottom-sub">
+        Wildfire crew leader during BC state of emergency · 3M+ trees planted ·
+        Caribou habitat rehabilitation · ATV operator in remote terrain.
+      </p>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <div class="bottom-item">
+      <p class="bottom-hed">Download CV</p>
+      <p class="bottom-sub">
+        Full curriculum vitae available on request. MSc thesis expected August 2026 —
+        Forest Cover Change, Congo Basin via remote sensing.
+      </p>
+    </div>
+
+  </div><!-- /bottom-bar -->
+
+  <!-- ============================================================
+       FOOTER — small print at the very bottom
+       Edit the two domain names and year as needed
+       ============================================================ -->
+  <p class="footer">
+    levi031.github.io &nbsp;·&nbsp; levimitchell.ca &nbsp;·&nbsp; Gatineau, QC
+  </p>
+
+</div><!-- /page -->
 </body>
 </html>
